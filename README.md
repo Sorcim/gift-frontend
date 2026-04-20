@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# gift-frontend
 
-## Getting Started
+Interface utilisateur du projet Gift — application de liste de cadeaux pour couple.
 
-First, run the development server:
+## Stack technique
+
+- **Next.js** 16.x (App Router)
+- **TypeScript** 5.x (mode strict)
+- **Tailwind CSS** v4
+- **TanStack Query** v5 (état serveur)
+- **Zustand** v5 (état client : panier, UI)
+- **React Hook Form** (formulaires, Story 2.x+)
+
+## Prérequis
+
+- Node.js 20+
+- pnpm 10+
+
+## Démarrage rapide
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Installer les dépendances
+pnpm install
+
+# Copier et configurer les variables d'environnement
+cp .env.local.example .env.local
+# Éditer .env.local avec l'URL de l'API
+
+# Démarrer le serveur de développement
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+L'application est accessible sur [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+  app/             # Next.js App Router (pages et layouts)
+  features/
+    catalog/       # Catalogue visiteur
+    reservation/   # Panier et réservation
+    admin/         # Back-office couple
+    auth/          # Authentification couple
+  components/      # Composants UI partagés
+  lib/             # Utilitaires, client API, TanStack Query config
+  stores/          # Stores Zustand (cart, ui)
+  types/           # Types TypeScript globaux
+```
 
-## Learn More
+## Variables d'environnement
 
-To learn more about Next.js, take a look at the following resources:
+| Variable | Description |
+|---|---|
+| `NEXT_PUBLIC_API_URL` | URL de l'API gift-api |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Commandes disponibles
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm dev      # Démarrage développement
+pnpm build    # Build production
+pnpm start    # Serveur production
+pnpm lint     # Vérification ESLint
+```
