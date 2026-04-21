@@ -1,7 +1,5 @@
-'use client'
-
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 interface UiStore {
   isSpoilEnabled: boolean
@@ -14,6 +12,11 @@ export const useUiStore = create<UiStore>()(
       isSpoilEnabled: false,
       setSpoilEnabled: (enabled) => set({ isSpoilEnabled: enabled }),
     }),
-    { name: 'gift-ui-store' },
+    {
+      name: 'gift-ui-store',
+      storage: createJSONStorage(() =>
+        typeof window !== 'undefined' ? localStorage : ({ getItem: () => null, setItem: () => {}, removeItem: () => {} } as Storage)
+      ),
+    },
   ),
 )
