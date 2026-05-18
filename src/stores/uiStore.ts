@@ -15,7 +15,7 @@ export const useUiStore = create<UiStore>()(
     {
       name: 'gift-ui-store',
       storage: createJSONStorage(() =>
-        typeof window !== 'undefined' ? localStorage : ({ getItem: () => null, setItem: () => {}, removeItem: () => {} } as Storage)
+        typeof window !== 'undefined' ? localStorage : ({ getItem: () => null, setItem: () => {}, removeItem: () => {}, clear: () => {}, key: () => null, length: 0 } as unknown as Storage)
       ),
     },
   ),
